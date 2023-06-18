@@ -56,29 +56,22 @@ pub trait SeekStream {
 }
 
 //--        BinaryReader      --\\
-pub struct BinaryReader {
-    pub stream: MemoryStream,
+pub struct BinaryReader<'a> {
+    pub stream: MemoryStream<'a>,
     endian: Endian,
 }
 
-impl BinaryReader {
-    /// Create a new BinaryWriter, without data
-    pub fn new(endian: Endian) -> Self {
-        Self {
-            endian,
-            stream: MemoryStream::new(),
-        }
-    }
-
-    /// Createa a new BinaryWriter with predefined data
-    pub fn new_stream(stream: MemoryStream, endian: Endian) -> Self {
+impl<'a> BinaryReader<'a> {
+    /// Createa a new BinaryWriter with a predefined MemoryStream
+    pub fn new_stream<'b>(stream: MemoryStream<'a>, endian: Endian) -> Self {
         Self { endian, stream }
     }
 
-    pub fn new_vec(stream: Vec<u8>, endian: Endian) -> Self {
+    /// Createa a new BinaryWriter with a predefined buffer
+    pub fn new_vec(buffer: &'a mut Vec<u8>, endian: Endian) -> Self {
         Self {
             endian,
-            stream: MemoryStream::new_vec(stream),
+            stream: MemoryStream::new_vec(buffer),
         }
     }
 
@@ -246,26 +239,21 @@ impl BinaryReader {
 //
 
 //--        BinaryWriter      --\\
-pub struct BinaryWriter {
-    pub stream: MemoryStream,
+pub struct BinaryWriter<'a> {
+    pub stream: MemoryStream<'a>,
     endian: Endian,
 }
 
-impl BinaryWriter {
-    /// Create a new BinaryWriter, without data
-    pub fn new(endian: Endian) -> Self {
-        Self {
-            endian,
-            stream: MemoryStream::new(),
-        }
-    }
-
+impl<'a> BinaryWriter<'a> {
     /// Createa a new BinaryWriter with predefined data
-    pub fn new_stream(stream: MemoryStream, endian: Endian) -> Self {
+    pub fn new_stream<'b>(stream: MemoryStream<'b>, endian: Endian) -> Self
+    where
+        'b: 'a,
+    {
         Self { endian, stream }
     }
 
-    pub fn new_vec(stream: Vec<u8>, endian: Endian) -> Self {
+    pub fn new_vec(stream: &'a mut Vec<u8>, endian: Endian) -> Self {
         Self {
             endian,
             stream: MemoryStream::new_vec(stream),

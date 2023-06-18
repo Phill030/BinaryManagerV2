@@ -2,21 +2,13 @@ use std::io::{Error, ErrorKind, Read, Write};
 
 use crate::{BinaryError, Result, SeekStream};
 
-#[derive(Clone)]
-pub struct MemoryStream {
-    buffer: Vec<u8>,
+pub struct MemoryStream<'a> {
+    buffer: &'a mut Vec<u8>,
     position: usize,
 }
 
-impl MemoryStream {
-    pub fn new() -> Self {
-        Self {
-            buffer: Vec::new(),
-            position: 0,
-        }
-    }
-
-    pub fn new_vec(buffer: Vec<u8>) -> Self {
+impl<'a> MemoryStream<'a> {
+    pub fn new_vec(buffer: &'a mut Vec<u8>) -> Self {
         Self {
             buffer,
             position: 0,
@@ -33,7 +25,7 @@ impl MemoryStream {
 /// fn seek(&mut self, to: usize) -> Result<usize>;
 /// fn tell(&mut self) -> Result<usize>;
 /// fn len(&self) -> Result<usize>;
-impl SeekStream for MemoryStream {
+impl<'a> SeekStream for MemoryStream<'a> {
     fn seek(&mut self, to: usize) -> Result<usize> {
         self.position = to;
         Ok(self.position)
@@ -46,7 +38,7 @@ impl SeekStream for MemoryStream {
     }
 }
 
-impl Read for MemoryStream {
+impl<'a> Read for MemoryStream<'a> {
     fn read(&mut self, buffer: &mut [u8]) -> std::io::Result<usize> {
         if self.position + buffer.len() > self.buffer.len() {
             return Err(Error::new(
@@ -67,7 +59,7 @@ impl Read for MemoryStream {
     }
 }
 
-impl Write for MemoryStream {
+impl<'a> Write for MemoryStream<'a> {
     fn write(&mut self, bytes: &[u8]) -> std::io::Result<usize> {
         self.buffer.extend_from_slice(bytes);
         self.position += bytes.len();
@@ -79,17 +71,8 @@ impl Write for MemoryStream {
     }
 }
 
-impl From<Vec<u8>> for MemoryStream {
-    fn from(buffer: Vec<u8>) -> Self {
-        MemoryStream {
-            buffer,
-            position: 0,
-        }
-    }
-}
-
-impl Into<Vec<u8>> for MemoryStream {
+impl Into<Vec<u8>> for MemoryStream<'_> {
     fn into(self) -> Vec<u8> {
-        self.buffer
+        self.buffer.to_vec()
     }
 }
