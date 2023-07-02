@@ -3,7 +3,7 @@ use std::io::{Error, ErrorKind, Read, Write};
 use crate::{BinaryError, Result, SeekStream};
 
 pub struct MemoryStream<'a> {
-    buffer: &'a mut Vec<u8>,
+    buffer: &'a mut [u8],
     position: usize,
 }
 
@@ -61,7 +61,7 @@ impl<'a> Read for MemoryStream<'a> {
 
 impl<'a> Write for MemoryStream<'a> {
     fn write(&mut self, bytes: &[u8]) -> std::io::Result<usize> {
-        self.buffer.extend_from_slice(bytes);
+        self.buffer.clone_from_slice(bytes);
         self.position += bytes.len();
         Ok(bytes.len())
     }
