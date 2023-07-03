@@ -57,22 +57,14 @@ pub trait SeekStream {
 
 //--        BinaryReader      --\\
 pub struct BinaryReader<'a> {
-    pub stream: MemoryStream<'a>,
+    pub stream: &'a mut MemoryStream<'a>,
     endian: Endian,
 }
 
 impl<'a> BinaryReader<'a> {
     /// Createa a new BinaryWriter with a predefined MemoryStream
-    pub fn new_stream<'b>(stream: MemoryStream<'a>, endian: Endian) -> Self {
+    pub fn new_stream<'b>(stream: &'a mut MemoryStream<'a>, endian: Endian) -> Self {
         Self { endian, stream }
-    }
-
-    /// Createa a new BinaryWriter with a predefined buffer
-    pub fn new_vec(buffer: &'a mut Vec<u8>, endian: Endian) -> Self {
-        Self {
-            endian,
-            stream: MemoryStream::new_vec(buffer),
-        }
     }
 
     /// Read a length-prefixed `String` from the stream.
