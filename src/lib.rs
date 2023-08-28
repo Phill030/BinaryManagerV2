@@ -58,7 +58,7 @@ pub trait SeekStream {
 //--        BinaryReader      --\\
 pub struct BinaryReader<'a> {
     pub stream: MemoryStream<'a>,
-    endian: Endian,
+    pub endian: Endian,
 }
 
 impl<'a> BinaryReader<'a> {
