@@ -4,7 +4,7 @@ use crate::{BinaryError, Result, SeekStream};
 
 pub struct MemoryStream<'a> {
     pub buffer: &'a mut [u8],
-    position: usize,
+    pub position: usize,
 }
 
 impl<'a> MemoryStream<'a> {
