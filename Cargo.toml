@@ -1,12 +1,12 @@
 [package]
-name = "binary_rw"
-version = "0.2.0"
+name = "binary_modifier"
+version = "0.2.1"
 edition = "2021"
-description = "Simple BinaryManager to read & write to buffer"
+description = "binary_modifier is a simple library to read & write to buffer"
 authors = ["Phill030"]
 license = "MIT"
+categories = ["binary", "read", "write", "buffer", "modify"]
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
 thiserror = "1.0.47"

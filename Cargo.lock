@@ -9,8 +9,8 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a4668cab20f66d8d020e1fbc0ebe47217433c1b6c8f2040faf858554e394ace6"
 
 [[package]]
-name = "binary_rw"
-version = "0.2.0"
+name = "binary_modifier"
+version = "0.2.1"
 dependencies = [
  "anyhow",
  "thiserror",
