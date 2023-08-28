@@ -3,7 +3,7 @@ use std::io::{Error, ErrorKind, Read, Write};
 use crate::{BinaryError, Result, SeekStream};
 
 pub struct MemoryStream<'a> {
-    buffer: &'a mut [u8],
+    pub buffer: &'a mut [u8],
     position: usize,
 }
 
