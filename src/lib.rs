@@ -30,7 +30,7 @@ macro_rules! read_data {
 }
 
 /// Variants to describe endianness.
-#[derive(PartialEq)]
+#[derive(PartialEq, Clone)]
 pub enum Endian {
     /// Big endian.
     Big,
