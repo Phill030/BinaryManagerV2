@@ -67,7 +67,13 @@ impl<'a> BinaryReader<'a> {
         Self { endian, stream }
     }
 
-    /// Createa a new BinaryWriter with a predefined buffer
+    /// Createa a new BinaryWriter with a predefined `Vec<u8>` buffer
+    /// ```rs
+    /// use binary_modifier::{BinaryReader, Endian};
+    ///
+    /// let mut test_vec = vec![0,1,2,3,4,6,7,8,9,0];
+    /// let reader = BinaryReader::new(&mut test_vec, Endian::Little);
+    /// ```
     pub fn new_vec(buffer: &'a mut Vec<u8>, endian: Endian) -> Self {
         Self {
             endian,
