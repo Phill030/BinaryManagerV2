@@ -22,13 +22,13 @@ impl<'a> MemoryStream<'a> {
 
 /// This implements the `SeekStream` trait from main.rs into `MemoryStream`
 impl<'a> SeekStream for MemoryStream<'a> {
-    /// The `seek` function updates the position of a mutable reference to a struct and returns the new
+    /// TUpdates the position of a mutable reference to a struct and returns the new
     /// position.
     ///
     /// Arguments:
     ///
     /// * `to`: The `to` parameter is the position to which the seek operation should move the current
-    /// position. It is of type `usize`, which represents an unsigned integer.
+    /// position. It is of type `usize`
     ///
     /// Returns:
     ///
@@ -37,7 +37,7 @@ impl<'a> SeekStream for MemoryStream<'a> {
         self.position = to;
         Ok(self.position)
     }
-    /// The `tell` function returns the current position of a mutable reference.
+    /// Returns the current position of a mutable reference.
     ///
     /// Returns:
     ///
@@ -45,7 +45,7 @@ impl<'a> SeekStream for MemoryStream<'a> {
     fn tell(&mut self) -> Result<usize> {
         Ok(self.position)
     }
-    /// The `len` function returns the length of the buffer as a `Result` containing a `usize`.
+    /// Returns the length of the buffer as a `Result` containing a `usize`.
     ///
     /// Returns:
     ///
