@@ -18,18 +18,6 @@ impl<'a> MemoryStream<'a> {
     pub fn get_buffer(&self) -> Vec<u8> {
         self.buffer.to_vec()
     }
-
-    pub fn _seek(&mut self, to: usize) -> Result<usize> {
-        self.seek(to)
-    }
-
-    pub fn _tell(&mut self) -> Result<usize> {
-        self.tell()
-    }
-
-    fn _len(&self) -> Result<usize> {
-        self.len()
-    }
 }
 
 /// This implements the `SeekStream` trait from main.rs into `MemoryStream`
