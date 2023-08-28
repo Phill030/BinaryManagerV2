@@ -1,6 +1,6 @@
 [package]
 name = "binary_modifier"
-version = "0.3.2"
+version = "0.3.3"
 edition = "2021"
 description = "binary_modifier is a simple library to read & write to buffer"
 authors = ["Phill030"]

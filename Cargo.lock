@@ -10,7 +10,7 @@ checksum = "a4668cab20f66d8d020e1fbc0ebe47217433c1b6c8f2040faf858554e394ace6"
 
 [[package]]
 name = "binary_modifier"
-version = "0.3.2"
+version = "0.3.3"
 dependencies = [
  "anyhow",
  "thiserror",
