@@ -247,7 +247,7 @@ impl<'a> BinaryReader<'a> {
 //--        BinaryWriter      --\\
 pub struct BinaryWriter<'a> {
     pub stream: MemoryStream<'a>,
-    endian: Endian,
+    pub endian: Endian,
 }
 
 impl<'a> BinaryWriter<'a> {
