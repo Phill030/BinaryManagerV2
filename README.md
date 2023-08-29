@@ -41,7 +41,7 @@ println!("Data written: {:?}", data);
 # Usage
 To use the Binary Modifier crate in your Rust project, add the following dependency to your Cargo.toml file:
 ```toml
-binary_modifier = "0.2.1"
+binary_modifier = "0.3.3"
 ```
 Or use cargo to install it using
 ```
