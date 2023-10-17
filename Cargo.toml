@@ -9,5 +9,5 @@ categories = ["binary", "read", "write", "buffer", "modify"]
 
 
 [dependencies]
-thiserror = "1.0.47"
+thiserror = "1.0.49"
 anyhow = "1.0.75"
